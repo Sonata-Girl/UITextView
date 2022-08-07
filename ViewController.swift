@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var textViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var stepper: UIStepper!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var progressView: UIProgressView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +22,9 @@ class ViewController: UIViewController {
         // назначили делегата(ответсвенного) за выполнение добавленных в класс методы
         textView.delegate = self
         textView.isHidden = true
-        textView.alpha = 0
+        
+        // настройка для UIView.animate ниже
+//        textView.alpha = 0
         //textView.text = ""
         
         textView.font = UIFont.init(name: "AppleSDGothicNeo-Regular", size: 17) //
@@ -39,6 +42,9 @@ class ViewController: UIViewController {
         activityIndicator.hidesWhenStopped = true
         activityIndicator.color = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
         activityIndicator.startAnimating()
+        self.view.isUserInteractionEnabled = true
+        
+        progressView.setProgress(0, animated: true)
         
         // отслеживание появления клавиатуры
         NotificationCenter.default.addObserver(self,
@@ -51,11 +57,23 @@ class ViewController: UIViewController {
                                                name: UIResponder.keyboardWillHideNotification,
                                                object: nil)
         
-        UIView.animate(withDuration: 0, delay: 3, options: .curveLinear, animations: {
-            self.textView.alpha = 1
-        }) { (finished) in
-            self.activityIndicator.stopAnimating()
-            self.textView.isHidden = false
+//        UIView.animate(withDuration: 0, delay: 3, options: .curveLinear, animations: {
+//            self.textView.alpha = 1
+//        }) { (finished) in
+//            self.activityIndicator.stopAnimating()
+//            self.textView.isHidden = false
+//            self.view.isUserInteractionEnabled = false
+//        }
+        
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+            if self.progressView.progress != 1 {
+                self.progressView.progress += 0.2
+            } else {
+                self.activityIndicator.stopAnimating()
+                self.textView.isHidden = false
+                self.view.isUserInteractionEnabled = false
+                self.progressView.isHidden = true
+            }
         }
     }
     
