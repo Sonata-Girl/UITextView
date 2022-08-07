@@ -33,6 +33,13 @@ The appearance of the keyboard itself can be customized using the properties pro
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="1nx-ZZ-nhl">
+                                <rect key="frame" x="280" y="92" width="94" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="sizeFont:" destination="BYZ-38-t0r" eventType="valueChanged" id="WYk-Iu-J9U"/>
+                                </connections>
+                            </stepper>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemYellowColor"/>
@@ -48,6 +55,7 @@ The appearance of the keyboard itself can be customized using the properties pro
                     </view>
                     <connections>
                         <outlet property="countLabel" destination="iEn-aB-ZIt" id="ODK-gc-Yzd"/>
+                        <outlet property="stepper" destination="1nx-ZZ-nhl" id="jX3-Du-1aJ"/>
                         <outlet property="textView" destination="4ji-XJ-aWc" id="Fv8-Nu-vwl"/>
                         <outlet property="textViewBottomConstraint" destination="Ix8-KH-Sfg" id="UYv-aa-iYL"/>
                     </connections>

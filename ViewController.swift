@@ -12,17 +12,26 @@ class ViewController: UIViewController {
     @IBOutlet weak var countLabel: UILabel!
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var textViewBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var stepper: UIStepper!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // назначили делегата(ответсвенного) за выполнение добавленных в класс методы
         textView.delegate = self
-        textView.text = ""
+        //textView.text = ""
         
         textView.font = UIFont.init(name: "AppleSDGothicNeo-Regular", size: 17) //
         textView.backgroundColor = self.view.backgroundColor
         textView.layer.cornerRadius = 10
+        
+        //  установка дефолтных значений степпера
+        stepper.value = 17
+        stepper.minimumValue = 10
+        stepper.maximumValue = 25
+        stepper.tintColor = .white // цвета кнопок
+        stepper.backgroundColor = .gray // заливка кнопок
+        stepper.layer.cornerRadius = 5 // закругление краев
         
         // подключение "наблюдателя" за открытием клавиатуры
         // который будет вызван если клавиатура откроется
@@ -68,6 +77,14 @@ class ViewController: UIViewController {
         
         //определяем зону видимости скролинга
         textView.scrollRangeToVisible(textView.selectedRange)
+    }
+    
+    @IBAction func sizeFont(_ sender: UIStepper) {
+        
+        let font = textView.font?.fontName
+        let fontSize = CGFloat(sender.value)
+
+        textView.font = UIFont(name: font!, size: fontSize)
     }
 }
 
