@@ -40,6 +40,9 @@ The appearance of the keyboard itself can be customized using the properties pro
                                     <action selector="sizeFont:" destination="BYZ-38-t0r" eventType="valueChanged" id="WYk-Iu-J9U"/>
                                 </connections>
                             </stepper>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="PmP-Ti-2O5">
+                                <rect key="frame" x="185" y="405" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemYellowColor"/>
@@ -47,13 +50,16 @@ The appearance of the keyboard itself can be customized using the properties pro
                             <constraint firstItem="4ji-XJ-aWc" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="2tc-wH-Dh2"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="iEn-aB-ZIt" secondAttribute="trailing" constant="363" id="9lr-Md-dbP"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="4ji-XJ-aWc" secondAttribute="bottom" constant="153" id="Ix8-KH-Sfg"/>
+                            <constraint firstItem="PmP-Ti-2O5" firstAttribute="centerY" secondItem="4ji-XJ-aWc" secondAttribute="centerY" id="OIt-6a-eAe"/>
                             <constraint firstItem="4ji-XJ-aWc" firstAttribute="top" secondItem="iEn-aB-ZIt" secondAttribute="bottom" constant="54" id="Wmd-Hy-EPf"/>
                             <constraint firstItem="iEn-aB-ZIt" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="aKC-wu-fx0"/>
                             <constraint firstItem="iEn-aB-ZIt" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="54" id="bcu-m8-qDC"/>
+                            <constraint firstItem="PmP-Ti-2O5" firstAttribute="centerX" secondItem="4ji-XJ-aWc" secondAttribute="centerX" id="ck2-mr-c7H"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="4ji-XJ-aWc" secondAttribute="trailing" constant="16" id="sgB-to-dez"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="PmP-Ti-2O5" id="Neh-FT-p1V"/>
                         <outlet property="countLabel" destination="iEn-aB-ZIt" id="ODK-gc-Yzd"/>
                         <outlet property="stepper" destination="1nx-ZZ-nhl" id="jX3-Du-1aJ"/>
                         <outlet property="textView" destination="4ji-XJ-aWc" id="Fv8-Nu-vwl"/>

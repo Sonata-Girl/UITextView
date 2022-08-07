@@ -13,12 +13,15 @@ class ViewController: UIViewController {
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var textViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var stepper: UIStepper!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // назначили делегата(ответсвенного) за выполнение добавленных в класс методы
         textView.delegate = self
+        textView.isHidden = true
+        textView.alpha = 0
         //textView.text = ""
         
         textView.font = UIFont.init(name: "AppleSDGothicNeo-Regular", size: 17) //
@@ -33,18 +36,27 @@ class ViewController: UIViewController {
         stepper.backgroundColor = .gray // заливка кнопок
         stepper.layer.cornerRadius = 5 // закругление краев
         
-        // подключение "наблюдателя" за открытием клавиатуры
-        // который будет вызван если клавиатура откроется
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.color = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
+        activityIndicator.startAnimating()
+        
+        // отслеживание появления клавиатуры
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(updateTextView(notification:)),
                                                name: UIResponder.keyboardWillShowNotification,
                                                object: nil)
-        // подключение "наблюдателя" за закрытием клавиатуры
-        // который будет вызван если клавиатура скроется
+        // отслеживание скрытия клавиатуры
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(updateTextView(notification:)),
                                                name: UIResponder.keyboardWillHideNotification,
                                                object: nil)
+        
+        UIView.animate(withDuration: 0, delay: 3, options: .curveLinear, animations: {
+            self.textView.alpha = 1
+        }) { (finished) in
+            self.activityIndicator.stopAnimating()
+            self.textView.isHidden = false
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
